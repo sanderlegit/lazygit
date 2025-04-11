@@ -19,8 +19,8 @@ func initDirs(home string) {
 }
 
 func initBaseDirs(home string) {
-	homeAppSupport := filepath.Join(home, "Library", "Application Support")
-	rootAppSupport := "/Library/Application Support"
+	homeAppSupport := filepath.Join(home, ".config")
+	rootAppSupport := "/usr/local/share"
 
 	// Initialize standard directories.
 	baseDirs.dataHome = xdgPath(envDataHome, homeAppSupport)
