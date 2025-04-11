@@ -1,6 +1,7 @@
 package filetree
 
 import (
+	"fmt"
 	"strings"
 	"sync"
 
@@ -119,6 +120,23 @@ func (self *CommitFileTreeViewModel) GetSelectedItemIds() ([]string, int, int) {
 	})
 
 	return ids, startIdx, endIdx
+}
+
+func (self *CommitFileTreeViewModel) GetSelectedFiles() string {
+	nodes, _, _ := self.GetSelectedItems()
+	if nodes == nil {
+		return ""
+	}
+
+	result := ""
+	for i, node := range nodes {
+		if i == 0 {
+			result = fmt.Sprintf("%s", node.File.GetPath())
+		} else {
+			result = fmt.Sprintf("%s %s", result, node.File.GetPath())
+		}
+	}
+	return result
 }
 
 func (self *CommitFileTreeViewModel) GetSelectedFile() *models.CommitFile {

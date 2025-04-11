@@ -193,6 +193,7 @@ type SessionState struct {
 	SelectedTag            *Tag
 	SelectedStashEntry     *StashEntry
 	SelectedCommitFile     *CommitFile
+	SelectedCommitFiles    string
 	SelectedCommitFilePath string
 	SelectedWorktree       *Worktree
 	CheckedOutBranch       *Branch
@@ -237,6 +238,7 @@ func (self *SessionStateLoader) call() *SessionState {
 		SelectedTag:            tagShimFromModelRemote(self.c.Contexts().Tags.GetSelected()),
 		SelectedStashEntry:     stashEntryShimFromModelRemote(self.c.Contexts().Stash.GetSelected()),
 		SelectedCommitFile:     commitFileShimFromModelRemote(self.c.Contexts().CommitFiles.GetSelectedFile()),
+		SelectedCommitFiles:    self.c.Contexts().CommitFiles.GetSelectedFiles(),
 		SelectedCommitFilePath: selectedCommitFilePath,
 		SelectedWorktree:       worktreeShimFromModelRemote(self.c.Contexts().Worktrees.GetSelected()),
 		CheckedOutBranch:       branchShimFromModelBranch(self.refsHelper.GetCheckedOutRef()),
