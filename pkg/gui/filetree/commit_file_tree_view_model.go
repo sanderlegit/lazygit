@@ -129,11 +129,14 @@ func (self *CommitFileTreeViewModel) GetSelectedFiles() string {
 	}
 
 	result := ""
-	for i, node := range nodes {
-		if i == 0 {
-			result = fmt.Sprintf("%s", node.File.GetPath())
-		} else {
-			result = fmt.Sprintf("%s %s", result, node.File.GetPath())
+
+	for _, node := range nodes {
+		if node.IsFile() {
+			if len(result) == 0 {
+				result = fmt.Sprintf("%s", node.File.GetPath())
+			} else {
+				result = fmt.Sprintf("%s %s", result, node.File.GetPath())
+			}
 		}
 	}
 	return result
